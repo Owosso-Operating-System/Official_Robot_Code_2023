@@ -20,6 +20,7 @@ public class Drive extends CommandBase {
   
   // Creates new XboxController Object
   public final XboxController controller;
+  //turns off the safty
 
   /**Method: Drive
    * Parameters: DriveTrain and XboxController
@@ -34,6 +35,8 @@ public class Drive extends CommandBase {
     this.controller = controller;
     addRequirements(this.driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
+    driveTrain.arcadeDrive.setSafetyEnabled(false);
+
   }
 
   // Called when the command is initially scheduled.
@@ -50,7 +53,7 @@ public class Drive extends CommandBase {
   @Override
   public void execute() {
   //Left Stick 0 left/right  1 up/down    Right Stick  4 left/right
-    driveTrain.mecDrive.driveCartesian(controller.getRawAxis(1), -controller.getRawAxis(0), -controller.getRawAxis(4));
+    driveTrain.arcadeDrive.arcadeDrive(controller.getRawAxis(1)/2, -controller.getRawAxis(4)/2);
   }
 
   // Called once the command ends or is interrupted.

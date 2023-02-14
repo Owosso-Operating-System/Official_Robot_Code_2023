@@ -32,10 +32,10 @@ public class LineUp extends CommandBase {
   @Override
   public void execute() {
     if(LimeLight.getX() > 1){
-      driveTrain.mecDrive.driveCartesian(0, -.2, 0);
+      driveTrain.arcadeDrive.arcadeDrive(0, -0.2);
     }
     if(LimeLight.getX() < -1){
-      driveTrain.mecDrive.driveCartesian(0, .2, 0);
+      driveTrain.arcadeDrive.arcadeDrive(0, 0.2);
     }
   }
 

@@ -37,7 +37,6 @@ public class RobotContainer {
     // Assign the BalanceButton command to the "A" button on controller0
     // Assign the LineUp command to the "B" button on controller0
     configureButtonBindings();
-    new JoystickButton(controller0, XboxController.Button.kA.value).whileTrue(new BalanceButton(driveTrain, DriveTrain.gyro));
 
     new JoystickButton(controller0, XboxController.Button.kB.value).whileTrue(new LineUp(driveTrain));
     // set Defualt Command for driveTrain passing in the driveTrain and controller
@@ -58,7 +57,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     String autoName = SmartDashboard.getString("Auto Selector", "OneSecondAuton");
-    DriveTrain.gyro.setYaw(0);
 
     switch(autoName){
       case "OneSecondAuton":
