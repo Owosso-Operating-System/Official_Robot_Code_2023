@@ -4,34 +4,37 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
+import com.ctre.phoenix.sensors.Pigeon2;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.PIDBalance;
 import frc.robot.subsystems.DriveTrain;
 
-/** Class: Drive
-   * Creates a new Drive Command.
+/** Class: BalanceButton
+   * Creates a new BalanceButton Command.
    *  */
 
-public class Drive extends CommandBase {
+public class BalanceButton extends CommandBase {
   
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   // Creates new DriveTrain Object named driveTrain 
   public final DriveTrain driveTrain;
-  
-  // Creates new XboxController Object
-  public final XboxController controller;
 
-  /**Method: Drive
-   * Parameters: DriveTrain and XboxController
-   * Variables used: driveTrain and controller
+  // Creates new Pigeon2 Object
+  public final Pigeon2 gyro;
+
+  /**Method: BalanceButton
+   * Parameters: DriveTrain, XboxController, and Pigeon2
+   * Variables used: driveTrain, controller, and gyro
    * What it does: Assigns the parameter DriveTrain to driveTrain
    *               Assigns the parameter XboxController to controller
-   *               Uses addRequirements to tie DriveTrain to Drive
+   *               Assigns the parameter Pigeon2 to gyro
+   *               Uses addRequirements to tie DriveTrain to BalanceButton
    *  */
 
-  public Drive(DriveTrain driveTrain, XboxController controller) {
+  public BalanceButton(DriveTrain driveTrain, Pigeon2 gyro) {
     this.driveTrain = driveTrain;
-    this.controller = controller;
+    this.gyro = gyro;
     addRequirements(this.driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -40,18 +43,21 @@ public class Drive extends CommandBase {
   @Override
   public void initialize() {}
 
-  /**Method: Drive
-   * Parameters: None
-   * Variables used: driveTrain.mecDrive and controller
-   * What it does: Takes the controller outputs, passes the values to mecDrive
-   *  */
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  //Left Stick 0 left/right  1 up/down    Right Stick  4 left/right
-    driveTrain.mecDrive.driveCartesian(controller.getRawAxis(1), -controller.getRawAxis(0), -controller.getRawAxis(4));
-  }
+    //If the robot is more than ±2° it will recenter itself.
+
+    if(gyro.getPitch() >= 1.5){
+        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+    }
+    else if(gyro.getPitch() <= -1.5){
+      driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+    }
+    else{
+      //PIDBalance.reset();
+    }
+}
 
   // Called once the command ends or is interrupted.
   @Override

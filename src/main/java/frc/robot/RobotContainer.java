@@ -61,6 +61,10 @@ public class RobotContainer {
     switch(autoName){
       case "OneSecondAuton":
         return new OneSecondAuton(driveTrain);
+      case "SquareAutonRight":
+        return new SquareAutonRight(driveTrain);
+      case "SquareAutonLeft":
+        return new SquareAutonLeft(driveTrain);
     }
     return null;
   }

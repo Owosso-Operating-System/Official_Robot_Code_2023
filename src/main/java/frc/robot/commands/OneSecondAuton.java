@@ -24,17 +24,14 @@ public class OneSecondAuton extends CommandBase {
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
-  /* (non-Javadoc)
-   * @see edu.wpi.first.wpilibj2.command.Command#execute()
-   */
   @Override
   public void execute() {
 
-    driveTrain.arcadeDrive.setSafetyEnabled(false);
+    driveTrain.mecDrive.setSafetyEnabled(false);
 
-    driveTrain.arcadeDrive.arcadeDrive(1,0);    
+    driveTrain.mecDrive.driveCartesian(1, 0, 0);    
     Timer.delay(1);
-    driveTrain.arcadeDrive.arcadeDrive(1,0);    
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);    
     Timer.delay(14);
     isFinished();
 
