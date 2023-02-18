@@ -39,7 +39,7 @@ public class SquareAutonLeft extends CommandBase {
     Timer.delay(2);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -90));
-      if(driveTrain.gyro.getYaw() < -89.99){
+      if(DriveTrain.gyro.getYaw() < -89.99){
         break;
       }
     }
@@ -49,7 +49,7 @@ public class SquareAutonLeft extends CommandBase {
     Timer.delay(2);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -180));
-      if(driveTrain.gyro.getYaw() < -179.99){
+      if(DriveTrain.gyro.getYaw() < -179.99){
         break;
       }
     }
@@ -59,7 +59,7 @@ public class SquareAutonLeft extends CommandBase {
     Timer.delay(2);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -270));
-      if(driveTrain.gyro.getYaw() < -269.99){
+      if(DriveTrain.gyro.getYaw() < -269.99){
         break;
       }
     }
@@ -69,18 +69,18 @@ public class SquareAutonLeft extends CommandBase {
     Timer.delay(2);
     while(true){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -360));
-      if(driveTrain.gyro.getYaw() < -359.99){
+      if(DriveTrain.gyro.getYaw() < -359.99){
         break;
       }
     }
   while(true){
-    if(driveTrain.gyro.getYaw() < 0.5){
+    if(DriveTrain.gyro.getYaw() < 0.5){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -360));
     }
-    else if(driveTrain.gyro.getYaw() > -0.5){
+    else if(DriveTrain.gyro.getYaw() > -0.5){
       driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, -360));
     }
-    else if(driveTrain.gyro.getYaw() > -0.25 && driveTrain.gyro.getYaw() < 0.25){
+    else if(DriveTrain.gyro.getYaw() > -0.25 && DriveTrain.gyro.getYaw() < 0.25){
       break;
     }
   }
