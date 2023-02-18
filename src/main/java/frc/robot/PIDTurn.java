@@ -16,9 +16,9 @@ import frc.robot.subsystems.DriveTrain;
 public class PIDTurn {
    
     //creates the kP, kI and, kD variables and assigns their numerical values
-    static double kP = 0.00375/*7*1.5*/;
-    static double kI = 0.0000026345;//1*1.5;
-    static double kD = 0.0004965/*35*1.5*/;
+    static double kP = 0.00375;
+    static double kI = 0.0000026345;
+    static double kD = 0.0004965;
     
     //creates the proportional, integral and, derivative variables
     static double proportional;
