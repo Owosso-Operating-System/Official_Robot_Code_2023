@@ -25,6 +25,8 @@ public class RobotContainer {
   private final DriveTrain driveTrain;
   //Create new controller Object
   private final XboxController controller0;
+  //Create new controller Object
+  private final XboxController controller1;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -33,6 +35,8 @@ public class RobotContainer {
     driveTrain = new DriveTrain();
     // add in new controller
     controller0 = new XboxController(0);
+    // add in new controller
+    controller1 = new XboxController(1);
 
     // Assign the BalanceButton command to the "A" button on controller0
     // Assign the LineUp command to the "B" button on controller0
