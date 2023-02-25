@@ -51,7 +51,7 @@ public class PIDBalance {
         integral = totalError * kI;
         derivative = (error - lastError) * kD;
     
-        double output = (proportional + integral + derivative)*1.5;
+        double output = proportional + integral + derivative;
     
         speedLimit = Math.copySign(speedLimit, output);
 

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -32,6 +33,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    String[] autons= {"OneSecondAuton", "SquareAutonLeft", "SquareAutonRight"};
+    SmartDashboard.putStringArray("Auto List", autons);
 
      /**Method: RobotContainer
    * Parameters: N/A
@@ -42,13 +45,7 @@ public class Robot extends TimedRobot {
 
     m_robotContainer = new RobotContainer();
     LimeLight.updateTable();
-    
-    String[] autons = {"OneSecondAuton"};
 
-    SmartDashboard.putStringArray("Auto Selector", autons);
-
-    SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
-    SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
         // Creates and sets up the camera 
     CameraServer.startAutomaticCapture();
   }
@@ -57,8 +54,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
     LimeLight.updateTable();
-    SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
-    SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
+    DriveTrain.updateGryo();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

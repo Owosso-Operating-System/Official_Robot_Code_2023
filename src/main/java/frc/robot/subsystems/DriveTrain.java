@@ -9,6 +9,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Class: DriveTrain
@@ -45,8 +46,9 @@ public final static Pigeon2 gyro = new Pigeon2(5);
  
 
  // invert left side Motor
-lF.setInverted(true);
-lB.setInverted(true);
+ lF.setInverted(true);
+ lB.setInverted(true);
+
 
  // use CAN Motors in new MechanumDrive 
  mecDrive = new MecanumDrive(lF, lB, rF, rB);
@@ -55,5 +57,20 @@ lB.setInverted(true);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public static void updateGryo(){
+   double value = gyro.getYaw();
+    if(value > 360){
+      value = value % 360;
+    }
+    else if(value < 0 && value > -360){
+      value = value + 360;
+    }
+    else if(value < 0 && value < -360){
+      value = (value % 360) + 360;
+    }
+
+    SmartDashboard.putNumber("Gyro", value);
   }
 }

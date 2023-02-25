@@ -15,6 +15,8 @@ import frc.robot.commands.Claw;
 import frc.robot.commands.Drive;
 import frc.robot.commands.LineUp;
 import frc.robot.commands.OneSecondAuton;
+import frc.robot.commands.SquareAutonLeft;
+import frc.robot.commands.SquareAutonRight;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -80,11 +82,14 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     String autoName = SmartDashboard.getString("Auto Selector", "OneSecondAuton");
-    DriveTrain.gyro.setYaw(0);
 
     switch(autoName){
       case "OneSecondAuton":
         return new OneSecondAuton(driveTrain);
+      case "SquareAutonRight":
+        return new SquareAutonRight(driveTrain);
+      case "SquareAutonLeft":
+        return new SquareAutonLeft(driveTrain);
     }
     return null;
   }
