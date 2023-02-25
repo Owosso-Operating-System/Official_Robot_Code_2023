@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Arm;
 import frc.robot.commands.BalanceButton;
 import frc.robot.commands.Claw;
+import frc.robot.commands.DockAuton;
+import frc.robot.commands.DockDropAuton;
 import frc.robot.commands.Drive;
 import frc.robot.commands.LineUp;
 import frc.robot.commands.BasicDropOff;
-import frc.robot.commands.SquareAutonLeft;
-import frc.robot.commands.SquareAutonRight;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -86,10 +86,10 @@ public class RobotContainer {
     switch(autoName){
       case "OneSecondAuton":
         return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem);
-      case "SquareAutonRight":
-        return new SquareAutonRight(driveTrain);
-      case "SquareAutonLeft":
-        return new SquareAutonLeft(driveTrain);
+      case "DockDropAuton":
+        return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem);
+      case "DockAuton":
+        return new DockAuton(driveTrain);
     }
     return null;
   }
