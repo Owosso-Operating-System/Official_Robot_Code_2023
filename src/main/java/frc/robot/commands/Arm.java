@@ -12,7 +12,7 @@ public class Arm extends CommandBase {
   // crates new armSubsystem object
   public final ArmSubsystem armSubsystem;
   // Creates new XboxController Object
-  public final XboxController controller;
+  public final XboxController controller1;
 
     /**Method: Arm
    * Parameters: armSubsystems and XboxController
@@ -22,11 +22,11 @@ public class Arm extends CommandBase {
    *               Uses addRequirements to tie ArmSubsystem to Arm
    *  */
 
-  public Arm(ArmSubsystem armSubsystem, XboxController controller) {
+  public Arm(ArmSubsystem armSubsystem, XboxController controller1) {
     this.armSubsystem = armSubsystem;
-    this.controller = controller;
-    addRequirements(this.armSubsystem);
+    this.controller1 = controller1;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(this.armSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -36,10 +36,10 @@ public class Arm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // sets speed of the motor
-    armSubsystem.bend.set(controller.getRawAxis(1));
-    // sets speed of the claw 
-    armSubsystem.claw.set(controller.getRawAxis(4));
+    // sets speed of the bend
+    armSubsystem.bend.set(controller1.getRawAxis(1));
+    // sets speed of the extend
+    armSubsystem.extend.set(controller1.getRawAxis(5));
   }
 
   // Called once the command ends or is interrupted.

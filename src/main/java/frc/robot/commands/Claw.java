@@ -33,15 +33,17 @@ public class Claw extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    clawSub.compi.enableAnalog(85, 100);
+    //clawSub.compi.enableAnalog(85, 100);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(controller.getAButton()){
+    /*if(controller.getAButton()){
       clawSub.soli.set(true);
-    }
+    }*/
+    clawSub.claw.set(-controller.getLeftTriggerAxis());
+    clawSub.claw.set(controller.getRightTriggerAxis());
   }
 
   // Called once the command ends or is interrupted.

@@ -4,9 +4,11 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Compressor;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+/*import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Solenoid;*/
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /* Class: ClawSubsytem
@@ -15,8 +17,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClawSubsystem extends SubsystemBase {
   /** Creates a new ClawSubsystems. */
-  public final Compressor compi;
-  public final Solenoid soli;
+  /*public final Compressor compi;
+  public final Solenoid soli;*/
+  public final CANSparkMax claw;
 
     /*Method: ClawSubsystem
    * Parameters: None
@@ -26,7 +29,7 @@ public class ClawSubsystem extends SubsystemBase {
    */
 
   public ClawSubsystem() {
-    compi = new Compressor(0, PneumaticsModuleType.CTREPCM);
+    /*compi = new Compressor(0, PneumaticsModuleType.CTREPCM);
     soli = new Solenoid(PneumaticsModuleType.CTREPCM, 1);
 
     compi.enableDigital();
@@ -37,7 +40,9 @@ public class ClawSubsystem extends SubsystemBase {
     double current = compi.getCurrent();
 
     soli.set(true);
-    soli.set(false);
+    soli.set(false);*/
+    // initalize the CAN Motor
+    claw = new CANSparkMax(8, MotorType.kBrushless);
   }
 
   @Override

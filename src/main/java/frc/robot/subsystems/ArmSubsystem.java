@@ -15,17 +15,18 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class ArmSubsystem extends SubsystemBase {
   //Creates new CANSparkMax Motors
   public final CANSparkMax bend;
-  public final CANSparkMax claw;
+  public final CANSparkMax extend;
 
   
   /*Method: ArmSubsystem
    * Parameters: None
-   * Variables used: bend and claw
+   * Variables used: bend and extend
    * What it does: Assigns the CANSparkMax variables their output ports
    */
 
   public ArmSubsystem() {
-    claw = new CANSparkMax(6, MotorType.kBrushless);
+    // initalize the CAN Motors
+    extend = new CANSparkMax(6, MotorType.kBrushless);
     bend = new CANSparkMax(7, MotorType.kBrushless);
   }
 
