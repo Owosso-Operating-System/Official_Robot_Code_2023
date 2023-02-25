@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    String[] autons= {"OneSecondAuton", "DockAuton", "DockDropAuton"};
+    String[] autons= {"BasicDropOff", "DockAuton", "DockDropAuton"};
     SmartDashboard.putStringArray("Auto List", autons);
 
      /**Method: RobotContainer
