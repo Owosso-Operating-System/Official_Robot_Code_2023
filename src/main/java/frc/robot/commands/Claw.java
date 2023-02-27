@@ -39,11 +39,17 @@ public class Claw extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*if(controller.getAButton()){
-      clawSub.soli.set(true);
-    }*/
-    clawSub.claw.set(-controller.getLeftTriggerAxis());
-    clawSub.claw.set(controller.getRightTriggerAxis());
+    if(controller.getLeftTriggerAxis() > .1){
+      //If left trigger is pressed then it closes the claw at 1/50 of the speed
+      clawSub.claw.set(-controller.getLeftTriggerAxis()/50);
+    }else if(controller.getRightTriggerAxis() > .1){
+      //If right trigger is pressed then it opens the claw at 1/50 the speed
+      clawSub.claw.set(controller.getRightTriggerAxis()/50);
+    }else if(controller.getRightTriggerAxis() < .1 || controller.getLeftTriggerAxis() < .1){
+      //If no trigger is pulled then no movement
+      clawSub.claw.set(0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.
