@@ -31,6 +31,7 @@ public class LineUp extends CommandBase {
   */
   @Override
   public void execute() {
+    //detects reflective materials from the limelight
     if(LimeLight.getX() > 1){
       driveTrain.mecDrive.driveCartesian(0, -.2, 0);
     }

@@ -19,12 +19,12 @@ public class BasicDropOff extends CommandBase {
 
   private ClawSubsystem clawSubsystem;
 
-  /** Creates a new OneSecondAuton. */
+  /** Creates a new BasicDropOff. */
   public BasicDropOff(DriveTrain driveTrain, ArmSubsystem armSubsystem, ClawSubsystem clawSubsystem) {
     this.driveTrain = driveTrain;
     this.armSubsystem = armSubsystem;
     this.clawSubsystem = clawSubsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
+    // add requierments to call drivetrain
     addRequirements(driveTrain);
   }
 
