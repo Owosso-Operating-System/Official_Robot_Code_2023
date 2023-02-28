@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Arm;
 import frc.robot.commands.BalanceButton;
 import frc.robot.commands.Claw;
+import frc.robot.commands.DockAuton;
+import frc.robot.commands.DockDropAuton;
 import frc.robot.commands.Drive;
 import frc.robot.commands.LineUp;
-import frc.robot.commands.OneSecondAuton;
+import frc.robot.commands.BasicDropOff;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -79,11 +81,15 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    String autoName = SmartDashboard.getString("Auto Selector", "OneSecondAuton");
+    String autoName = SmartDashboard.getString("Auto Selector", "BasicDropOff");
 
     switch(autoName){
-      case "OneSecondAuton":
-        return new OneSecondAuton(driveTrain);
+      case "BasicDropOff":
+        return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem);
+      case "DockDropAuton":
+        return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem);
+      case "DockAuton":
+        return new DockAuton(driveTrain);
     }
     return null;
   }
