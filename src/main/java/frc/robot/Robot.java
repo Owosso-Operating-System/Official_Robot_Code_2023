@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
 
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -26,8 +27,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    /**  Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-     autonomous chooser on the dashboard.*/
+    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+    // autonomous chooser on the dashboard.
+    String[] autons= {"BasicDropOff", "DockAuton", "DockDropAuton"};
+    SmartDashboard.putStringArray("Auto List", autons);
 
      /**Method: RobotContainer
    * Parameters: N/A
@@ -39,16 +42,6 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     //updates table
     LimeLight.updateTable();
-    
-    //adds OneSecondAuton on autons
-    String[] autons = {"OneSecondAuton"};
-    
-        // puts oneSecondAuton on the smart dashboard
-    SmartDashboard.putStringArray("Auto Selector", autons);
-       // gets the angle of the gyro and displaces it
-    SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
-        // gets the pitch and displaces it 
-    SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
         // Creates and sets up the camera 
     CameraServer.startAutomaticCapture();
         
@@ -59,10 +52,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run();
     //updates the limelight Table
     LimeLight.updateTable();
-    // gets the angle of the gyro and displaces it
-    SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
-    // gets the pitch and displaces it 
-    SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
+    DriveTrain.updateGryo();
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
