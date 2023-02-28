@@ -25,10 +25,6 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -42,17 +38,19 @@ public class Robot extends TimedRobot {
    * What it does: Puts auton on dashbord. 
    *               Puts gyro on the dashbord.
    *  */
-
+      //makes a new robotcontainer
     m_robotContainer = new RobotContainer();
+    //updates table
     LimeLight.updateTable();
-
         // Creates and sets up the camera 
     CameraServer.startAutomaticCapture();
+        
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    //updates the limelight Table
     LimeLight.updateTable();
     DriveTrain.updateGryo();
   }
