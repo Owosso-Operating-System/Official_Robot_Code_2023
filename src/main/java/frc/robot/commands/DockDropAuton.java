@@ -36,31 +36,42 @@ public class DockDropAuton extends CommandBase {
   public void execute() {
     //Disables Safety
     driveTrain.mecDrive.setSafetyEnabled(false);
+    
     //Closes claw on cone
     clawSubsystem.claw.set(.25);
     Timer.delay(.2);
+
     //stops claw
     clawSubsystem.claw.set(0);
+
     //moves arm up
     armSubsystem.bend.set(.1);
+
     //moves robot forward in a straight line
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDTurn.getSpeed(driveTrain, 0));
     Timer.delay(2.5);
+
     //stops bending the arm
     armSubsystem.bend.set(0);
+
     //extends the arm out
     armSubsystem.extend.set(.1);
+
     //stops the arm
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(1);
+
     //opens the claw
     clawSubsystem.claw.set(-.1);
     Timer.delay(.2);
+    
     //makes the bot move backwards
     driveTrain.mecDrive.driveCartesian(-.25, 0, PIDTurn.getSpeed(driveTrain, 0));
+
     //retracks the arm
     armSubsystem.extend.set(-.05);
     Timer.delay(2);
+
     //Balances robot
     while(Timer.getMatchTime() < 15){
       driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);

@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.LimeLight;
+import frc.robot.PIDBalance;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -75,6 +76,10 @@ public class BasicDropOff extends CommandBase {
 
     //Stops everything
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    //Balances robot
+    while(Timer.getMatchTime() < 15){
+      driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+    }
     Timer.delay(5.25);
 
     //Ends the auton 
