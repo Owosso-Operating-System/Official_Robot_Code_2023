@@ -35,8 +35,8 @@ public class BalanceButton extends CommandBase {
   public BalanceButton(DriveTrain driveTrain, Pigeon2 gyro) {
     this.driveTrain = driveTrain;
     this.gyro = gyro;
+    // add requirments to call drivetrain
     addRequirements(this.driveTrain);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -46,16 +46,13 @@ public class BalanceButton extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //If the robot is more than ±2° it will recenter itself.
 
+    //If the robot is more than ±1.5° it will balance itself.
     if(gyro.getPitch() >= 1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
     }
     else if(gyro.getPitch() <= -1.5){
       driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
-    }
-    else{
-      //PIDBalance.reset();
     }
 }
 

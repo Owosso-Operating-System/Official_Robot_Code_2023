@@ -25,7 +25,7 @@ public class Arm extends CommandBase {
   public Arm(ArmSubsystem armSubsystem, XboxController controller1) {
     this.armSubsystem = armSubsystem;
     this.controller1 = controller1;
-    // Use addRequirements() here to declare subsystem dependencies.
+    // add requirments to call arm subsystem 
     addRequirements(this.armSubsystem);
   }
 
