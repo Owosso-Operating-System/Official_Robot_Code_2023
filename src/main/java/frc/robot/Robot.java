@@ -24,14 +24,10 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
+    /**  Instantiate our RobotContainer.  This will perform all our button bindings, and put our
+     autonomous chooser on the dashboard.*/
 
      /**Method: RobotContainer
    * Parameters: N/A
@@ -39,25 +35,33 @@ public class Robot extends TimedRobot {
    * What it does: Puts auton on dashbord. 
    *               Puts gyro on the dashbord.
    *  */
-
+      //makes a new robotcontainer
     m_robotContainer = new RobotContainer();
+    //updates table
     LimeLight.updateTable();
     
+    //adds OneSecondAuton on autons
     String[] autons = {"OneSecondAuton"};
-
+    
+        // puts oneSecondAuton on the smart dashboard
     SmartDashboard.putStringArray("Auto Selector", autons);
-
+       // gets the angle of the gyro and displaces it
     SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
+        // gets the pitch and displaces it 
     SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
         // Creates and sets up the camera 
     CameraServer.startAutomaticCapture();
+        
   }
 
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
+    //updates the limelight Table
     LimeLight.updateTable();
+    // gets the angle of the gyro and displaces it
     SmartDashboard.putNumber("Gyro",DriveTrain.gyro.getYaw());
+    // gets the pitch and displaces it 
     SmartDashboard.putNumber("Gyro Pitch",DriveTrain.gyro.getPitch());
   }
 
