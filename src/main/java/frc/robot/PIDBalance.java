@@ -12,8 +12,8 @@ import frc.robot.subsystems.DriveTrain;
 
 public class PIDBalance {
     //creates the kP, kI and, kD variables and assigns their numerical values
-    static double kP = 0.007;
-    static double kI = 0.00001;
+    static double kP = 0.0105;
+    static double kI = 0.000001;
     static double kD = 0.035;
 
     //creates the proportional, integral and, derivative variables
