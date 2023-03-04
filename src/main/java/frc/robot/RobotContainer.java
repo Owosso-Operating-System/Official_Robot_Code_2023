@@ -86,7 +86,7 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    String autoName = SmartDashboard.getString("Auto Selector", "BasicDropOff");
+    String autoName = SmartDashboard.getString("Auto Selector", "BasicBalanceAuton");
 
     switch(autoName){
       case "BasicDropOff":
