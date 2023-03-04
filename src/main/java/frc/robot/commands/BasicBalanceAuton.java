@@ -35,21 +35,26 @@ public class BasicBalanceAuton extends CommandBase {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
 
+    //Go forward to throw cube
     driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    Timer.delay(2.5);
+    Timer.delay(0.5); //2.75 + 14"
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
 
-    while(Timer.getMatchTime() < 14){
+    //Go backwards to get to charge station/out of the way
+    driveTrain.mecDrive.driveCartesian(0.4, 0, 0);
+    Timer.delay(2);
+
+    //Balance?
+    while(Timer.getMatchTime() < 14.5){
       if(gyro.getPitch() >= 2.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
       else if(gyro.getPitch() <= -2.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
-
       break;
     }
-    
+    //Finish
     isFinished();
   }
 
