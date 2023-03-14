@@ -59,7 +59,7 @@ public final static Pigeon2 gyro = new Pigeon2(5);
     // This method will be called once per scheduler run
   }
 
-  public static void updateGryo(){
+  public static void updateYaw(){
    double value = gyro.getYaw();
     if(value > 360){
       value = value % 360;
@@ -71,6 +71,20 @@ public final static Pigeon2 gyro = new Pigeon2(5);
       value = (value % 360) + 360;
     }
 
-    SmartDashboard.putNumber("Gyro", value);
+    SmartDashboard.putNumber("Gyro Yaw", value);
   }
+  public static void updatePitch(){
+    double value = gyro.getPitch();
+     if(value > 360){
+       value = value % 360;
+     }
+     else if(value < 0 && value > -360){
+       value = value + 360;
+     }
+     else if(value < 0 && value < -360){
+       value = (value % 360) + 360;
+     }
+ 
+     SmartDashboard.putNumber("Gyro Pitch", value);
+   }
 }

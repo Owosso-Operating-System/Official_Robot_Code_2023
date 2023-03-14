@@ -70,5 +70,5 @@ public class PIDBalance {
             speed = output < speedLimit ? speedLimit : output;
         }
         return -speed;
-        }
+    }
 }

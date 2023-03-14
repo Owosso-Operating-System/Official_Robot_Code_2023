@@ -49,7 +49,7 @@ public class BalanceButton extends CommandBase {
 
     //If the robot is more than ±1.5° it will balance itself.
     if(gyro.getPitch() >= 1.5){
-        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+      driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
     }
     else if(gyro.getPitch() <= -1.5){
       driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
