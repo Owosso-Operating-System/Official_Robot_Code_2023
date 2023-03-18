@@ -36,8 +36,8 @@ public class ForChristian extends CommandBase {
   @Override
   public void execute() {
     //Back for 1 second
-    driveTrain.mecDrive.driveCartesian(-.25, 0, PIDTurn.getSpeed(driveTrain, 0));
-    Timer.delay(1);
+    driveTrain.mecDrive.driveCartesian(-1, 0, PIDTurn.getSpeed(driveTrain, 0));
+    Timer.delay(.1);
     //Forwards toward Cube
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDTurn.getSpeed(driveTrain, 0));
     Timer.delay(2);
@@ -49,7 +49,8 @@ public class ForChristian extends CommandBase {
     armSubsystem.bend.set(.1);
     Timer.delay(.5);
     //Rotate 180°
-    driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, 180)); // I thought that the third number was how much it turned so right now it goes in a curved  arc shaped 
+    clawSubsystem.claw.set(0);
+    driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, 180)); 
     Timer.delay(1);
     //Forward to links
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDTurn.getSpeed(driveTrain, 180));
@@ -73,7 +74,7 @@ public class ForChristian extends CommandBase {
     driveTrain.mecDrive.driveCartesian(-.33, 0, 0);
     Timer.delay(.9);
     //PIDBalance
-    int Time = 15000; 
+    int Time = 13000; 
 
     for(int i = 0 ; i < Time ;i++){
       if(gyro.getPitch() <= -1.5){
