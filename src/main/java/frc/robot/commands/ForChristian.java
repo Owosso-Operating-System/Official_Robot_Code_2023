@@ -38,9 +38,11 @@ public class ForChristian extends CommandBase {
     //Back for 1 second
     driveTrain.mecDrive.driveCartesian(-1, 0, PIDTurn.getSpeed(driveTrain, 0));
     Timer.delay(.1);
+
     //Forwards toward Cube
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDTurn.getSpeed(driveTrain, 0));
     Timer.delay(2);
+
     //Pick-Up and Raise arm
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     clawSubsystem.claw.set(.1);
@@ -48,13 +50,16 @@ public class ForChristian extends CommandBase {
     clawSubsystem.claw.set(0);
     armSubsystem.bend.set(.1);
     Timer.delay(.5);
+
     //Rotate 180°
     clawSubsystem.claw.set(0);
     driveTrain.mecDrive.driveCartesian(0, 0, PIDTurn.getSpeed(driveTrain, 180)); 
     Timer.delay(1);
+
     //Forward to links
     driveTrain.mecDrive.driveCartesian(.25, 0, PIDTurn.getSpeed(driveTrain, 180));
     Timer.delay(2);
+
     //Stop and Drop cube
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     armSubsystem.extend.set(.1);
@@ -62,17 +67,22 @@ public class ForChristian extends CommandBase {
     armSubsystem.extend.set(0);
     clawSubsystem.claw.set(-.1);
     Timer.delay(.5);
+
     //Back up a little
     driveTrain.mecDrive.driveCartesian(-.1, 0, 0);
     Timer.delay(.5);
+
     //Strafe to balance
     driveTrain.mecDrive.driveCartesian(0, 0.25, PIDTurn.getSpeed(driveTrain, 180));
     Timer.delay(1);
+
     //Back Up onto Balance Beam
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(.1);
+
     driveTrain.mecDrive.driveCartesian(-.33, 0, 0);
     Timer.delay(.9);
+    
     //PIDBalance
     int Time = 13000; 
 
