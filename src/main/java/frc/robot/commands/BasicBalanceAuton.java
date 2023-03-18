@@ -4,12 +4,17 @@
 
 package frc.robot.commands;
 
+import java.sql.Time;
+
 import com.ctre.phoenix.sensors.Pigeon2;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDBalance;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.BalanceButton;
 
 public class BasicBalanceAuton extends CommandBase {
 
@@ -21,7 +26,6 @@ public class BasicBalanceAuton extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
     this.gyro =  gyro;
-
     addRequirements(driveTrain);
   }
 
@@ -35,33 +39,20 @@ public class BasicBalanceAuton extends CommandBase {
 
     driveTrain.mecDrive.setSafetyEnabled(false);
 
-    //Go forward to throw cube
-    //driveTrain.mecDrive.driveCartesian(-0.25, 0, 0);
-    //Timer.delay(0.5); //2.75 + 14"
-    //driveTrain.mecDrive.driveCartesian(0, 0, 0);
-
     //Go backwards to get to charge station/out of the way
-    //driveTrain.mecDrive.driveCartesian(0.4, 0, 0);
-    //Timer.delay(2);
+    driveTrain.mecDrive.driveCartesian(0.4, 0, 0);
+    Timer.delay(0.5);
+    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    Timer.delay(1);
 
-    //Balance?
-    /*while(Timer.getFPGATimestamp() < 14.5){
-      if(gyro.getPitch() >= 1.5){
-        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
-      }
-      else if(gyro.getPitch() <= -1.5){
-        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
-      }
-    }*/
-    while(true){
+    int Time = 30000; 
+
+    for(int i = 0 ; i < Time ;i++){
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
       else if(gyro.getPitch() >= 1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
-      }
-      else if (gyro.getUpTime() > 14.5){
-        isFinished();
       }
     }
   }
