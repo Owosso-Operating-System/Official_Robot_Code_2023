@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import com.fasterxml.jackson.databind.introspect.ConcreteBeanPropertyBase;
+
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
@@ -37,9 +39,13 @@ public class Arm extends CommandBase {
   @Override
   public void execute() {
     // sets speed of the bend
-    armSubsystem.bend.set(controller1.getRawAxis(1));
+    if(controller1.getRawAxis(1) > 0.1){
+      armSubsystem.bend.set(controller1.getRawAxis(1)/2);
+    }
     // sets speed of the extend
-    armSubsystem.extend.set(controller1.getRawAxis(5));
+    else if(controller1.getRawAxis(5) > 0.1){
+      armSubsystem.extend.set(controller1.getRawAxis(5)/2);
+    }
   }
 
   // Called once the command ends or is interrupted.

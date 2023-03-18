@@ -4,12 +4,14 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.sensors.Pigeon2;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Arm;
 import frc.robot.commands.BalanceButton;
+import frc.robot.commands.BasicBalanceAuton;
 import frc.robot.commands.Claw;
 import frc.robot.commands.DockAuton;
 import frc.robot.commands.DockDropAuton;
@@ -39,6 +41,8 @@ public class RobotContainer {
   private final XboxController controller0;
   //Create new controller Object
   private final XboxController controller1;
+
+  private final Pigeon2 gyro;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -53,6 +57,8 @@ public class RobotContainer {
     controller0 = new XboxController(0);
     // add in new controller
     controller1 = new XboxController(1);
+    //add in new gyro
+    gyro = new Pigeon2(5);
 
     // set Defualt Command for driveTrain passing in the driveTrain and controller0
     driveTrain.setDefaultCommand(new Drive(driveTrain, controller0));
@@ -80,7 +86,7 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    String autoName = SmartDashboard.getString("Auto Selector", "BasicDropOff");
+    String autoName = SmartDashboard.getString("Auto Selector", "BasicBalanceAuton");
 
     switch(autoName){
       case "BasicDropOff":
@@ -89,6 +95,8 @@ public class RobotContainer {
         return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem);
       case "DockAuton":
         return new DockAuton(driveTrain);
+      case "BasicBalanceAuton":
+        return new BasicBalanceAuton(driveTrain, gyro);
     }
     return null;
   }

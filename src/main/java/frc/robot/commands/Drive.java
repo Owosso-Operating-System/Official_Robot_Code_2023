@@ -50,7 +50,12 @@ public class Drive extends CommandBase {
   @Override
   public void execute() {
   //Left Stick 0 left/right  1 up/down    Right Stick  4 left/right
-    driveTrain.mecDrive.driveCartesian(controller.getRawAxis(1), -controller.getRawAxis(0), -controller.getRawAxis(4));
+    if(controller.getRawAxis(1) > .2 || controller.getRawAxis(0) > .2 || controller.getRawAxis(4) > .2 || controller.getRawAxis(0) < -.2 || controller.getRawAxis(1) < -.2 || controller.getRawAxis(4) < -.2){
+      driveTrain.mecDrive.driveCartesian(controller.getRawAxis(1)/3, -controller.getRawAxis(0)/3, -controller.getRawAxis(4)/3);
+    }else{
+      driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    }
+    //driveTrain.mecDrive.driveCartesian(controller.getRawAxis(1)/3, -controller.getRawAxis(0)/3, -controller.getRawAxis(4)/3);
   }
 
   // Called once the command ends or is interrupted.
