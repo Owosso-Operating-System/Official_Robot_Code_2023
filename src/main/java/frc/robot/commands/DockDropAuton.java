@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
+import com.ctre.phoenix.sensors.Pigeon2;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDBalance;
@@ -16,12 +18,14 @@ public class DockDropAuton extends CommandBase {
   private DriveTrain driveTrain;
   private ArmSubsystem armSubsystem;
   private ClawSubsystem clawSubsystem;
+  private Pigeon2 gyro;
 
   /** Creates a new OneSecondAuton. */
-  public DockDropAuton(DriveTrain driveTrain, ArmSubsystem armSubsystem, ClawSubsystem clawSubsystem) {
+  public DockDropAuton(DriveTrain driveTrain, ArmSubsystem armSubsystem, ClawSubsystem clawSubsystem, Pigeon2 gyro) {
     this.driveTrain = driveTrain;
     this.armSubsystem = armSubsystem;
     this.clawSubsystem = clawSubsystem;
+    this.gyro = gyro;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain, armSubsystem, clawSubsystem);
@@ -73,8 +77,15 @@ public class DockDropAuton extends CommandBase {
     Timer.delay(2);
 
     //Balances robot
-    while(Timer.getMatchTime() < 15){
-      driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+    int Time = 17000; 
+
+    for(int i = 0 ; i < Time ;i++){
+      if(gyro.getPitch() <= -1.5){
+        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+      }
+      else if(gyro.getPitch() >= 1.5){
+        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+      }
     }
     //stops the robot, ends auton
     isFinished();

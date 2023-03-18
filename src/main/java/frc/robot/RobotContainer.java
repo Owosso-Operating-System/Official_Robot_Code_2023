@@ -93,7 +93,7 @@ public class RobotContainer {
       case "BasicDropOff":
         return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem, gyro);
       case "DockDropAuton":
-        return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem);
+        return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem, gyro);
       case "DockAuton":
         return new DockAuton(driveTrain);
       case "BasicBalanceAuton":
