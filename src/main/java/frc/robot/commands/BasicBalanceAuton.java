@@ -25,7 +25,7 @@ public class BasicBalanceAuton extends CommandBase {
   public BasicBalanceAuton(DriveTrain driveTrain, Pigeon2 gyro) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
-    this.gyro =  gyro;
+    this.gyro = gyro;
     addRequirements(driveTrain);
   }
 
