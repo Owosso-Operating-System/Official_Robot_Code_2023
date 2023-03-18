@@ -91,7 +91,7 @@ public class RobotContainer {
 
     switch(autoName){
       case "BasicDropOff":
-        return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem);
+        return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem, gyro);
       case "DockDropAuton":
         return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem);
       case "DockAuton":
