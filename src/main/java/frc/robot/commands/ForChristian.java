@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.sensors.Pigeon2;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDBalance;
@@ -17,9 +19,13 @@ public class ForChristian extends CommandBase {
   private DriveTrain driveTrain;
   private ArmSubsystem armSubsystem;
   private ClawSubsystem clawSubsystem;
+  private Pigeon2 gyro;
 
-  public ForChristian() {
+  public ForChristian(DriveTrain driveTrain, Pigeon2 gyro) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.driveTrain = driveTrain;
+    this.gyro =  gyro;
+    addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -67,8 +73,16 @@ public class ForChristian extends CommandBase {
     driveTrain.mecDrive.driveCartesian(-.33, 0, 0);
     Timer.delay(.9);
     //PIDBalance
-    driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, PIDTurn.getSpeed(driveTrain, 180));
-    Timer.delay(3.5);
+    int Time = 15000; 
+
+    for(int i = 0 ; i < Time ;i++){
+      if(gyro.getPitch() <= -1.5){
+        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+      }
+      else if(gyro.getPitch() >= 1.5){
+        driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
+      }
+    }
     isFinished();
   }
 

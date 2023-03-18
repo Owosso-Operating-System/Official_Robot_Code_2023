@@ -16,6 +16,7 @@ import frc.robot.commands.Claw;
 import frc.robot.commands.DockAuton;
 import frc.robot.commands.DockDropAuton;
 import frc.robot.commands.Drive;
+import frc.robot.commands.ForChristian;
 import frc.robot.commands.LineUp;
 import frc.robot.commands.BasicDropOff;
 import frc.robot.subsystems.ArmSubsystem;
@@ -97,6 +98,8 @@ public class RobotContainer {
         return new DockAuton(driveTrain);
       case "BasicBalanceAuton":
         return new BasicBalanceAuton(driveTrain, gyro);
+      case "ForChristian":
+        return new ForChristian(driveTrain, gyro);
     }
     return null;
   }
