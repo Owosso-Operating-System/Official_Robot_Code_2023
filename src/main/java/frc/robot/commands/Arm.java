@@ -50,13 +50,13 @@ public class Arm extends CommandBase {
     }
     // sets speed of the extend
     if(controller1.getRawAxis(5) > 0.05){
-      if(!maxLimit.get()){
+      if(maxLimit.get()){
         armSubsystem.extend.set(controller1.getRawAxis(5));
       }else{
         armSubsystem.extend.set(0);
       }
     }else if(controller1.getRawAxis(5) < -0.05){
-      if(!minLimit.get()){
+      if(minLimit.get()){
         armSubsystem.extend.set(controller1.getRawAxis(5));
       }else{
         armSubsystem.extend.set(0);

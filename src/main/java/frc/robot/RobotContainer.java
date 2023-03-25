@@ -41,7 +41,7 @@ public class RobotContainer {
   private final XboxController controller0;
   //Create new controller Object
   private final XboxController controller1;
-
+  //Create new gyro object
   private final Pigeon2 gyro;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
