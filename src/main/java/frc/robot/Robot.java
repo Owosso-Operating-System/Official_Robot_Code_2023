@@ -4,9 +4,7 @@
 
 package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -19,6 +17,7 @@ import frc.robot.subsystems.DriveTrain;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
@@ -40,6 +39,7 @@ public class Robot extends TimedRobot {
    * What it does: Puts auton on dashbord. 
    *               Puts gyro on the dashbord.
    *  */
+  
       //makes a new robotcontainer
     m_robotContainer = new RobotContainer();
     //updates table
