@@ -81,10 +81,13 @@ public class BasicDropOff extends CommandBase {
 
     //Stops everything
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    //Balances robot
+    
+    //Sets Time as value
     int Time = 15000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }

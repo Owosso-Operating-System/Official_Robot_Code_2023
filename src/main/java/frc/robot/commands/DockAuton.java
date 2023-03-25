@@ -10,8 +10,17 @@ import frc.robot.PIDTurn;
 import frc.robot.subsystems.DriveTrain;
 
 public class DockAuton extends CommandBase {
+  // Creates new DriveTrain Object named driveTrain 
   private DriveTrain driveTrain;
-  /** Creates a new DockAuton. */
+
+        /**Method: Claw
+   * Parameters: ClawSubsystem and XboxController
+   * Variables used: clawSub and controller
+   * What it does: Assigns the parameter clawSub to ClawSubsystem
+   *               Assigns the parameter XboxController to controller
+   *               Uses addRequirements to tie ClawSubsystem to Claw
+   *  */
+
   public DockAuton(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;
     // Use addRequirements() here to declare subsystem dependencies.

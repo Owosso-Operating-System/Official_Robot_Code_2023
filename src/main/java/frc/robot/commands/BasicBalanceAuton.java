@@ -45,9 +45,12 @@ public class BasicBalanceAuton extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(1);
 
+    //Sets a start value of Time
     int Time = 30000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
