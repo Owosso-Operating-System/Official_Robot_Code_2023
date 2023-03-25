@@ -15,17 +15,31 @@ import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
 public class ForChristian extends CommandBase {
-  /** Creates a new ForChristian. */
+  //Creates new DriveTrain Object named driveTrain
   private DriveTrain driveTrain;
+  //Creates new ArmSubsystem Object named armSubsystem
   private ArmSubsystem armSubsystem;
+  //Creates new ClawSubsystem Object named clawSubsystem
   private ClawSubsystem clawSubsystem;
+  //Creates new Pigeon2 Object named gyro
   private Pigeon2 gyro;
 
-  public ForChristian(DriveTrain driveTrain, Pigeon2 gyro) {
-    // Use addRequirements() here to declare subsystem dependencies.
+    /**Method: ForChristian
+   * Parameters: DriveTrain, ArmSubsystem, ClawSubsystem, and Pigeon2
+   * Variables used: driveTrain, armSubsystem, clawSubsystem, and gyro
+   * What it does: Assigns the parameter DriveTrain to driveTrain
+   *               Assigns the parameter ClawSubsystem to clawSubsystem
+   *               Assigns the parameter ArmSubsystem to armSubsystem
+   *               Assigns the parameter Pigeon2 to gyro
+   *               Uses addRequirements to tie DriveTrain to ForChristian
+   *  */
+  public ForChristian(DriveTrain driveTrain, Pigeon2 gyro, ClawSubsystem clawSubsystem, ArmSubsystem armSubsystem) {
     this.driveTrain = driveTrain;
+    this.armSubsystem = armSubsystem;
+    this.clawSubsystem = clawSubsystem;
     this.gyro = gyro;
-    addRequirements(driveTrain);
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(driveTrain, clawSubsystem, armSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -82,11 +96,13 @@ public class ForChristian extends CommandBase {
 
     driveTrain.mecDrive.driveCartesian(-.33, 0, 0);
     Timer.delay(.9);
-    
+
     //PIDBalance
     int Time = 13000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
@@ -94,6 +110,7 @@ public class ForChristian extends CommandBase {
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
     }
+    //Auton stops, Finishing
     isFinished();
   }
 

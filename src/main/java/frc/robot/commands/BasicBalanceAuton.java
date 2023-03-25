@@ -4,28 +4,30 @@
 
 package frc.robot.commands;
 
-import java.sql.Time;
-
 import com.ctre.phoenix.sensors.Pigeon2;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.PIDBalance;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.commands.BalanceButton;
 
 public class BasicBalanceAuton extends CommandBase {
-
+  //Creates new DriveTrain Object named driveTrain
   private DriveTrain driveTrain;
-
+  //Creates new Pigeon2 Object named gyro
   private Pigeon2 gyro;
-  /** Creates a new BasicBalanceAuton. */
+
+   /**Method: BasicBalanceAuton
+   * Parameters: DriveTrain and Pigeon2
+   * Variables used: driveTrain and gyro
+   * What it does: Assigns the parameter DriveTrain to driveTrain
+   *               Assigns the parameter Pigeon2 to gyro
+   *               Uses addRequirements to tie DriveTrain to BasicBalanceAuton
+   *  */
   public BasicBalanceAuton(DriveTrain driveTrain, Pigeon2 gyro) {
-    // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
     this.gyro = gyro;
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(driveTrain);
   }
 
@@ -45,9 +47,12 @@ public class BasicBalanceAuton extends CommandBase {
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
     Timer.delay(1);
 
+    //Sets a start value of Time
     int Time = 30000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }

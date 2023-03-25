@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClawSubsystem;
 
 public class Claw extends CommandBase {
-  /** Creates a new Claw. */
   //Creates new ClawSubsystem Object
   public final ClawSubsystem clawSub;
+
   // Creates new XboxController Object
   public final XboxController controller;
 
@@ -32,9 +32,7 @@ public class Claw extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    //clawSub.compi.enableAnalog(85, 100);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

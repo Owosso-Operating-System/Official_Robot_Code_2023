@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveTrain;
 public class LineUp extends CommandBase {
 
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  /** Creates a new LimeLight. */
+  //Creates new DriveTrain Object named driveTrain
   public final DriveTrain driveTrain;
 
   public LineUp(DriveTrain driveTrain) {

@@ -15,16 +15,25 @@ import frc.robot.subsystems.ClawSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
 public class BasicDropOff extends CommandBase {
-
+  //Creates new DriveTrain Object named driveTrain
   private DriveTrain driveTrain;
-
+  //Creates new ArmSubsystem Object named armSubsystem
   private ArmSubsystem armSubsystem;
-
+  //Creates new ClawSubsystem Object named clawSubsystem
   private ClawSubsystem clawSubsystem;
-
+  //Creates new Pigeon2 Object named gyro
   private Pigeon2 gyro;
 
-  /** Creates a new BasicDropOff. */
+    /**Method: BasicDropOff
+   * Parameters: DriveTrain and Pigeon2
+   * Variables used: driveTrain and gyro
+   * What it does: Assigns the parameter DriveTrain to driveTrain
+   *               Assigns the parameter Pigeon2 to gyro
+   *               Assigns the parameter ArmSubsystem to armSubsystem
+   *               Assigns the parameter ClawSubsystem to clawSubsystem
+   *               Uses addRequirements to tie DriveTrain to BasicDropOff
+   *  */
+
   public BasicDropOff(DriveTrain driveTrain, ArmSubsystem armSubsystem, ClawSubsystem clawSubsystem, Pigeon2 gyro) {
     this.driveTrain = driveTrain;
     this.armSubsystem = armSubsystem;
@@ -81,10 +90,13 @@ public class BasicDropOff extends CommandBase {
 
     //Stops everything
     driveTrain.mecDrive.driveCartesian(0, 0, 0);
-    //Balances robot
+    
+    //Sets Time as value
     int Time = 15000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
