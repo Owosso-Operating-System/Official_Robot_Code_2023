@@ -42,7 +42,7 @@ public class RobotContainer {
   private final XboxController controller0;
   //Create new controller Object
   private final XboxController controller1;
-
+  //Create new gyro object
   private final Pigeon2 gyro;
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -95,7 +95,7 @@ public class RobotContainer {
       case "DockDropAuton":
         return new DockDropAuton(driveTrain, armSubsystem, clawSubsystem, gyro);
       case "DockAuton":
-        return new DockAuton(driveTrain);
+        return new DockAuton(driveTrain, gyro);
       case "BasicBalanceAuton":
         return new BasicBalanceAuton(driveTrain, gyro);
       case "ForChristian":
