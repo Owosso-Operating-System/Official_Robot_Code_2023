@@ -12,10 +12,19 @@ import frc.robot.PIDTurn;
 import frc.robot.subsystems.DriveTrain;
 
 public class DockAuton extends CommandBase {
-  // Creates new DriveTrain Object named driveTrain 
+  //Creates new DriveTrain Object named driveTrain 
   private DriveTrain driveTrain;
-  /** Creates a new DockAuton. */
-  public DockAuton(DriveTrain driveTrain) {
+  //Creates new Pigeon2 Object named gyro
+  private Pigeon2 gyro;
+
+    /**Method: DockAuton
+   * Parameters: DriveTrain and Pigeon2
+   * Variables used: driveTrain and gyro
+   * What it does: Assigns the parameter DriveTrain to driveTrain
+   *               Assigns the parameter Pigeon2 to gyro
+   *               Uses addRequirements to tie DriveTrain to DockAuton
+   *  */
+  public DockAuton(DriveTrain driveTrain, Pigeon2 gyro) {
     this.driveTrain = driveTrain;
     this.gyro = gyro;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -42,7 +51,9 @@ public class DockAuton extends CommandBase {
     //Starts to balance robot
     int Time = 30000; 
 
+    //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){
+      //while i is less than Time, balance the bot
       if(gyro.getPitch() <= -1.5){
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
@@ -50,6 +61,8 @@ public class DockAuton extends CommandBase {
         driveTrain.mecDrive.driveCartesian(PIDBalance.getSpeed(driveTrain, 0), 0, 0);
       }
     }
+    //Auton is Finished
+    isFinished();
   }
 
   // Called once the command ends or is interrupted.

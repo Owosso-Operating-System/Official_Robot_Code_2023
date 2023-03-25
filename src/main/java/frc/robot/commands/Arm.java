@@ -4,10 +4,7 @@
 
 package frc.robot.commands;
 
-<<<<<<< HEAD
-=======
 import edu.wpi.first.wpilibj.DigitalInput;
->>>>>>> 90ebaca4b87673ee39a283003e99e970a3d6fb63
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;

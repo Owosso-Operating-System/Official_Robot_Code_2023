@@ -99,7 +99,7 @@ public class RobotContainer {
       case "BasicBalanceAuton":
         return new BasicBalanceAuton(driveTrain, gyro);
       case "ForChristian":
-        return new ForChristian(driveTrain, gyro);
+        return new ForChristian(driveTrain, gyro, clawSubsystem, armSubsystem);
     }
     return null;
   }
