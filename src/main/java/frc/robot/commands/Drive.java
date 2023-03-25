@@ -32,8 +32,8 @@ public class Drive extends CommandBase {
   public Drive(DriveTrain driveTrain, XboxController controller) {
     this.driveTrain = driveTrain;
     this.controller = controller;
-    addRequirements(this.driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(this.driveTrain);
   }
 
   // Called when the command is initially scheduled.
