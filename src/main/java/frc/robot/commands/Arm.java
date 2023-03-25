@@ -4,8 +4,7 @@
 
 package frc.robot.commands;
 
-import com.fasterxml.jackson.databind.introspect.ConcreteBeanPropertyBase;
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArmSubsystem;
@@ -15,6 +14,9 @@ public class Arm extends CommandBase {
   public final ArmSubsystem armSubsystem;
   // Creates new XboxController Object
   public final XboxController controller1;
+
+  DigitalInput minLimit = new DigitalInput(0);
+  DigitalInput maxLimit = new DigitalInput(1);
 
     /**Method: Arm
    * Parameters: armSubsystems and XboxController
@@ -39,12 +41,28 @@ public class Arm extends CommandBase {
   @Override
   public void execute() {
     // sets speed of the bend
-    if(controller1.getRawAxis(1) > 0.1){
-      armSubsystem.bend.set(controller1.getRawAxis(1)/2);
+    if(controller1.getRawAxis(1) > 0.05){
+        armSubsystem.bend.set(controller1.getRawAxis(1));
+    }else if(controller1.getRawAxis(1) < -0.05){
+        armSubsystem.bend.set(controller1.getRawAxis(1));
+    }else{
+      armSubsystem.bend.set(0);
     }
     // sets speed of the extend
-    else if(controller1.getRawAxis(5) > 0.1){
-      armSubsystem.extend.set(controller1.getRawAxis(5)/2);
+    if(controller1.getRawAxis(5) > 0.05){
+      if(!maxLimit.get()){
+        armSubsystem.extend.set(controller1.getRawAxis(5));
+      }else{
+        armSubsystem.extend.set(0);
+      }
+    }else if(controller1.getRawAxis(5) < -0.05){
+      if(!minLimit.get()){
+        armSubsystem.extend.set(controller1.getRawAxis(5));
+      }else{
+        armSubsystem.extend.set(0);
+      }
+    }else{
+      armSubsystem.extend.set(0);
     }
   }
 
