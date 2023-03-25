@@ -86,9 +86,10 @@ public class RobotContainer {
    *  */
 
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+    // Makes the string of autons that we use in the drop down and sets the default
     String autoName = SmartDashboard.getString("Auto Selector", "BasicBalanceAuton");
 
+    // Adds the cases to the drop down
     switch(autoName){
       case "BasicDropOff":
         return new BasicDropOff(driveTrain, armSubsystem, clawSubsystem, gyro);
