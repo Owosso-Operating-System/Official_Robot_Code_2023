@@ -43,12 +43,12 @@ public class BasicBalanceAuton extends CommandBase {
 
     //Go backwards to get to charge station/out of the way
     driveTrain.mecDrive.driveCartesian(0.4, 0, 0);
-    Timer.delay(0.5);
-    driveTrain.mecDrive.driveCartesian(0, 0, 0);
+    Timer.delay(0.2);
+    driveTrain.mecDrive.driveCartesian(-0.5, 0, 0);
     Timer.delay(1);
 
     //Sets a start value of Time
-    int Time = 30000; 
+    int Time = 25000; 
 
     //As time pass, increase i value until equal to Time
     for(int i = 0 ; i < Time ;i++){

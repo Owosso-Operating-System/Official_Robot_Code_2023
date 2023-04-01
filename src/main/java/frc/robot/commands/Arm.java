@@ -42,22 +42,22 @@ public class Arm extends CommandBase {
   public void execute() {
     // sets speed of the bend
     if(controller1.getRawAxis(1) > 0.05){
-        armSubsystem.bend.set(controller1.getRawAxis(1));
+        armSubsystem.bend.set(controller1.getRawAxis(1)/4);
     }else if(controller1.getRawAxis(1) < -0.05){
-        armSubsystem.bend.set(controller1.getRawAxis(1));
+        armSubsystem.bend.set(controller1.getRawAxis(1)/4);
     }else{
       armSubsystem.bend.set(0);
     }
     // sets speed of the extend
     if(controller1.getRawAxis(5) > 0.05){
       if(maxLimit.get()){
-        armSubsystem.extend.set(controller1.getRawAxis(5));
+        armSubsystem.extend.set(controller1.getRawAxis(5)*0.75);
       }else{
         armSubsystem.extend.set(0);
       }
     }else if(controller1.getRawAxis(5) < -0.05){
       if(minLimit.get()){
-        armSubsystem.extend.set(controller1.getRawAxis(5));
+        armSubsystem.extend.set(controller1.getRawAxis(5)*0.75);
       }else{
         armSubsystem.extend.set(0);
       }
